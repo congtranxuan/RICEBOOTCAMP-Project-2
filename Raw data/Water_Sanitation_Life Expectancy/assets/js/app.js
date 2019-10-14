@@ -1,8 +1,14 @@
-function makeResponsive() {
+var GlobalYear, Globalval1;
+function GlobalvalueUpdate(year2, val2) {
+  GlobalYear = year2;
+  Globalval1 = val2;
+}
+
+function makeResponsive(GlobalYear, Globalval1) {
   // if the SVG area isn't empty when the browser loads,
   // remove it and replace it with a resized version of the chart
   var svgArea = d3.select("body").select("svg");
-
+  /////////////////////////////////////////////////BEGIN2
   // clear svg is not empty
   if (!svgArea.empty()) {
     svgArea.remove();
@@ -15,7 +21,7 @@ function makeResponsive() {
     top: 15,
     right: 40,
     bottom: 120,
-    left: 100
+    left: 150
   };
 
   var width = svgWidth - margin.right - margin.left;
@@ -126,48 +132,103 @@ function makeResponsive() {
   // function used for updating circles group with new tooltip
   function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     if (
-      chosenXAxis === "total life expectancy" &&
-      chosenYAxis === "total water & sanitation"
+      chosenXAxis === "Totallife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Total"
     ) {
+      //if (chosenXAxis === "Totallife"+GlobalYear && chosenYAxis === "W2010Total")
       var labelX = "Total Life Expectancy: ";
-      var labelY = "Total Water & Sanitation:";
+      var labelY = "Total Sanitation:";
+      if (Globalval1 === "W") {
+        labelY = "Total/Water: ";
+      } else {
+        labelY = "Total/Sanitation: ";
+      }
     } else if (
-      chosenXAxis === "male" &&
-      chosenYAxis === "total water & sanitation"
+      chosenXAxis === "Malelife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Total"
     ) {
       var labelX = "Male: ";
-      var labelY = "Total Water & Sanitation: ";
+      var labelY = "Total Sanitation: ";
+      if (Globalval1 === "W") {
+        labelY = "Total/Water: ";
+      } else {
+        labelY = "Total/Sanitation: ";
+      }
     } else if (
-      chosenXAxis === "female" &&
-      chosenYAxis === "total water & sanitation"
+      chosenXAxis === "Femalelife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Total"
     ) {
       var labelX = "Female: ";
-      var labelY = "Total Water & Sanitation: ";
+      var labelY = "Total Sanitation: ";
+      if (Globalval1 === "W") {
+        labelY = "Total/Water: ";
+      } else {
+        labelY = "Total/Sanitation: ";
+      }
     } else if (
-      chosenXAxis === "total life expectancy" &&
-      chosenYAxis === "rural"
+      chosenXAxis === "Totallife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Rural"
     ) {
       var labelX = "Total Life Expectancy: ";
       var labelY = "Rural: ";
-    } else if (chosenXAxis === "male" && chosenYAxis === "rural") {
+      if (Globalval1 === "W") {
+        labelY = "Rural/Water: ";
+      } else {
+        labelY = "Rural/Sanitation: ";
+      }
+    } else if (
+      chosenXAxis === "Malelife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Rural"
+    ) {
       var labelX = "Male: ";
       var labelY = "Rural: ";
-    } else if (chosenXAxis === "female" && chosenYAxis === "rural") {
+      if (Globalval1 === "W") {
+        labelY = "Rural/Water: ";
+      } else {
+        labelY = "Rural/Sanitation: ";
+      }
+    } else if (
+      chosenXAxis === "Femalelife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Rural"
+    ) {
       var labelX = "Female: ";
       var labelY = "Rural: ";
+      if (Globalval1 === "W") {
+        labelY = "Rural/Water: ";
+      } else {
+        labelY = "Rural/Sanitation: ";
+      }
     } else if (
-      chosenXAxis === "total life expectancy" &&
-      chosenYAxis === "urban"
+      chosenXAxis === "Totallife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Urban"
     ) {
       var labelX = "Total Life Expectancy: ";
       var labelY = "Urban: ";
-    } else if (chosenXAxis === "male" && chosenYAxis === "urban") {
+      if (Globalval1 === "W") {
+        labelY = "Urban/Water : ";
+      } else {
+        labelY = "Urban/Sanitation: ";
+      }
+    } else if (
+      chosenXAxis === "Malelife" + GlobalYear &&
+      chosenYAxis === Globalval1 + GlobalYear + "Urban"
+    ) {
       var labelX = "Male: ";
       var labelY = "Urban: ";
-    } else chosenXAxis === "female" && chosenYAxis === "urban";
-    {
+      if (Globalval1 === "W") {
+        labelY = "Urban/Water: ";
+      } else {
+        labelY = "Urban/Sanitation: ";
+      }
+    } //chosenXAxis === "Femalelife"+GlobalYear && chosenYAxis === Globalval1+GlobalYear+"Urban";
+    else {
       var labelX = "Female: ";
       var labelY = "Urban: ";
+      if (Globalval1 === "W") {
+        labelY = "Urban/Water: ";
+      } else {
+        labelY = "Urban/Sanitation: ";
+      }
     }
 
     var toolTip = d3
@@ -175,9 +236,7 @@ function makeResponsive() {
       .attr("class", "d3-tip")
       .offset([80, -60])
       .html(function(d) {
-        return `${
-          d.state
-        }<br>${labelX}${d[chosenXAxis]}${labelX === "Age: " ? "" : "%"}<br>${labelY}${d[chosenYAxis]}%`;
+        return `${d.Country}<br>${labelX}${d[chosenXAxis]}<br>${labelY}${d[chosenYAxis]}`;
       });
 
     circlesGroup.call(toolTip);
@@ -196,15 +255,30 @@ function makeResponsive() {
 
   // Retrieve data from the CSV file and execute everything below
 
+  //d3.csv("assets/data/" + GlobalYear + ".csv")
   d3.csv("assets/data/data.csv")
-    .then(function(statedata, err) {
+    .then(function(countrydata, err) {
       if (err) throw err;
 
+      //d3.select("#mydropdown")
+      //.data(countrydata)
+      //.enter()
+      //.append("option")
+      //.attr("value", d => d.Totallife)
+      //.text(d => d.Totallife);
+
+      console.log(countrydata);
       // parse data
-      statedata.forEach(function(data) {
-        data.Totallife = +data.Totallife;
-        data.Malelife = +data.Malelife;
-        data.Femalelife = +data.Femalelife;
+      countrydata.forEach(function(data) {
+        data.TotalLife2000 = +data.TotalLife2000;
+        data.Malelife2000 = +data.Malelife2000;
+        data.Femalelife2000 = +data.Femalelife2000;
+        data.Totallife2010 = +data.Totallife2010;
+        data.Malelife2010 = +data.Malelife2010;
+        data.Femalelife2010 = +data.Femalelife2010;
+        data.Totallife2016 = +data.Totallife2016;
+        data.Malelife2016 = +data.Malelife2016;
+        data.Femalelife2016 = +data.Femalelife2016;
         data.S2016Rural = +data.S2016Rural;
         data.S2016Urban = +data.S2016Urban;
         data.S2016Total = +data.S2016Total;
@@ -224,12 +298,12 @@ function makeResponsive() {
         data.W2000Urban = +data.W2000Urban;
         data.W2000Total = +data.W2000Total;
       });
-
+      ShowHide();
       // Create x scale function
-      var xLinearScale = xScale(statedata, chosenXAxis);
+      var xLinearScale = xScale(countrydata, chosenXAxis);
 
       // Create y scale function
-      var yLinearScale = yScale(statedata, chosenYAxis);
+      var yLinearScale = yScale(countrydata, chosenYAxis);
 
       // Create initial axis functions
       var bottomAxis = d3.axisBottom(xLinearScale);
@@ -249,20 +323,25 @@ function makeResponsive() {
         .call(leftAxis);
 
       // append initial circles
+      var myColor = d3
+        .scaleOrdinal()
+        .domain(countrydata)
+        .range(d3.schemeCategory10);
       var circlesGroup = chartGroup
         .selectAll("circle")
-        .data(statedata)
+        .data(countrydata)
         .enter()
         .append("circle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
         .attr("r", 14)
-        .attr("class", "stateCircle");
+        //.attr("class", "countryCircle")
+        .attr("fill", (d, i) => d3.schemeCategory10[i % 10]);
 
       // append texts inside circles
       var textGroup = chartGroup
         .selectAll("div")
-        .data(statedata)
+        .data(countrydata)
         .enter()
         .append("text")
         .text(function(d) {
@@ -272,7 +351,7 @@ function makeResponsive() {
         .attr("y", d => yLinearScale(d[chosenYAxis]))
         .attr("dy", "0.3em")
         //.attr("dx","-0.7em")
-        .attr("class", "stateText")
+        .attr("class", "countryText")
         //.attr("font-family", "sans-serif")
         .attr("font-weight", "500");
       //.attr("font-size", "14px");
@@ -291,7 +370,7 @@ function makeResponsive() {
         .append("text")
         .attr("x", 0)
         .attr("y", 25)
-        .attr("value", "Totallife") // value to grab for event listener
+        .attr("value", "Totallife" + GlobalYear) // value to grab for event listener
         .classed("active", true)
         .text("Total Life Expectancy at birth (years)");
 
@@ -299,7 +378,7 @@ function makeResponsive() {
         .append("text")
         .attr("x", 0)
         .attr("y", 50)
-        .attr("value", "Malelife") // value to grab for event listener
+        .attr("value", "Malelife" + GlobalYear) // value to grab for event listener
         .classed("inactive", true)
         .text("Male Life expectancy at birth (years)");
 
@@ -307,7 +386,7 @@ function makeResponsive() {
         .append("text")
         .attr("x", 0)
         .attr("y", 75)
-        .attr("value", "Femalelife") // value to grab for event listener
+        .attr("value", "Femalelife" + GlobalYear) // value to grab for event listener
         .classed("inactive", true)
         .text("Female Life expectancy at birth (years)");
 
@@ -316,7 +395,7 @@ function makeResponsive() {
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", 0)
-        .attr("value", "rural") // value to grab for event listener
+        .attr("value", Globalval1 + GlobalYear + "Rural") // value to grab for event listener
         .classed("active", true)
         .text("Rural (%)");
 
@@ -325,7 +404,7 @@ function makeResponsive() {
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", 25)
-        .attr("value", "urban") // value to grab for event listener
+        .attr("value", Globalval1 + GlobalYear + "Urban") // value to grab for event listener
         .classed("inactive", true)
         .text("Urban (%)");
 
@@ -334,7 +413,7 @@ function makeResponsive() {
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", 50)
-        .attr("value", "total") // value to grab for event listener
+        .attr("value", Globalval1 + GlobalYear + "Total") // value to grab for event listener
         .classed("inactive", true)
         .text("Total (%)");
 
@@ -352,8 +431,8 @@ function makeResponsive() {
           // console.log(chosenXAxis)
 
           // updates x scale for new data
-          xLinearScale = xScale(statedata, chosenXAxis);
-          // yLinearScale = yScale(statedata, chosenYAxis);
+          xLinearScale = xScale(countrydata, chosenXAxis);
+          // yLinearScale = yScale(countrydata, chosenYAxis);
 
           // updates x axis with transition
           xAxis = renderXAxis(xLinearScale, xAxis);
@@ -378,11 +457,11 @@ function makeResponsive() {
           circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
           // changes classes to change bold text
-          if (chosenXAxis === "total life expectancy") {
+          if (chosenXAxis === "Totallife" + GlobalYear) {
             totallifeLabel.classed("active", true).classed("inactive", false);
             MaleLabel.classed("active", false).classed("inactive", true);
             FemaleLabel.classed("active", false).classed("inactive", true);
-          } else if (chosenXAxis === "male") {
+          } else if (chosenXAxis === "Malelife" + GlobalYear) {
             totallifeLabel.classed("active", false).classed("inactive", true);
             MaleLabel.classed("active", true).classed("inactive", false);
             FemaleLabel.classed("active", false).classed("inactive", true);
@@ -405,8 +484,8 @@ function makeResponsive() {
           // console.log(chosenYAxis)
 
           // updates y scale for new data
-          // xLinearScale = xScale(statedata, chosenXAxis);
-          yLinearScale = yScale(statedata, chosenYAxis);
+          // xLinearScale = xScale(countrydata, chosenXAxis);
+          yLinearScale = yScale(countrydata, chosenYAxis);
 
           // updates y axis with transition
           //xAxis = renderXAxis(xLinearScale, xAxis);
@@ -431,18 +510,18 @@ function makeResponsive() {
           circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
           // changes classes to change bold text
-          if (chosenYAxis === "total water & sanitation") {
-            RuralLabel.classed("active", true).classed("inactive", false);
-            UrbanLabel.classed("active", false).classed("inactive", true);
-            TotalLabel.classed("active", false).classed("inactive", true);
-          } else if (chosenYAxis === "rural") {
-            RuralLabel.classed("active", false).classed("inactive", true);
-            UrbanLabel.classed("active", true).classed("inactive", false);
-            TotalLabel.classed("active", false).classed("inactive", true);
-          } else {
+          if (chosenYAxis === Globalval1 + GlobalYear + "Total") {
             RuralLabel.classed("active", false).classed("inactive", true);
             UrbanLabel.classed("active", false).classed("inactive", true);
             TotalLabel.classed("active", true).classed("inactive", false);
+          } else if (chosenYAxis === Globalval1 + GlobalYear + "Rural") {
+            RuralLabel.classed("active", true).classed("inactive", false);
+            UrbanLabel.classed("active", false).classed("inactive", true);
+            TotalLabel.classed("active", false).classed("inactive", true);
+          } else {
+            RuralLabel.classed("active", false).classed("inactive", true);
+            UrbanLabel.classed("active", true).classed("inactive", false);
+            TotalLabel.classed("active", false).classed("inactive", true);
           }
         }
       });
@@ -452,7 +531,17 @@ function makeResponsive() {
     });
 }
 // When the browser loads, makeResponsive() is called.
-makeResponsive();
+//var yr = document.getElementById("years");
+makeResponsive("2016", "W");
 
 // When the browser window is resized, makeResponsive() is called.
 d3.select(window).on("resize", makeResponsive);
+
+function ShowHide() {
+  $("#info1").fadeIn();
+  $("#info1").fadeIn("slow");
+  $("#info1").fadeIn(3000);
+  $("#info1").fadeOut();
+  $("#info1").fadeOut("slow");
+  $("#info1").fadeOut(3000);
+}
