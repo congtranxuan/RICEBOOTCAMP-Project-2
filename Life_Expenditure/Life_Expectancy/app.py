@@ -27,7 +27,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Metadata = Base.classes.datata
+Metadata = Base.classes.data
 
 
 @app.route("/")
@@ -83,9 +83,9 @@ def dataquery():
     
     stmt = db.session.query(Metadata).statement
     data = pd.read_sql_query(stmt, db.session.bind)
-
+    print(data)
     # Format the data to send as json
-    keys=["Country","Bothsexes16","Male16","Female16","Bothsexes6016","Male6016","Female6016",
+    keys  = ["Country","Bothsexes16","Male16","Female16","Bothsexes6016","Male6016","Female6016",
         "Bothsexes15","Male15","Female15","Bothsexes6015","Male6015","Female6015",
         "Bothsexes14","Male14","Female14","Bothsexes6014","Male6014","Female6014",
         "Bothsexes13","Male13","Female13","Bothsexes6013","Male6013","Female6013",
@@ -107,9 +107,9 @@ def dataquery():
         "2007","2007capita","2006","2006capita","2005","2005capita","2004","2004capita",
         "2003","2003capita","2002","2002capita","2001","2001capita","2000","2000capita"]
 
-    jsondata = {}
-    for i in data.columns.length:
-        jsondata.update({keys[i] : data.columns[i].values.tolist()})
+    # jsondata = {}
+    # for i in data.columns.length:
+    #     jsondata.update({keys[i] : data.columns[i].values.tolist()})
 
 
     # jsondata = {
@@ -127,7 +127,7 @@ def dataquery():
     #     "Male6015": data.Male6015.values.tolist(),
     #     "Female6015":data.Female6015.values.tolist(),
     # }
-    return jsonify(jsondata)
+    # return jsonify(jsondata)
 
 
 if __name__ == "__main__":
