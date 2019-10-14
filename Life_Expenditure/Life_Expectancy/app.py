@@ -28,7 +28,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Metadata = Base.classes.HealthExpend1
+Metadata = Base.classes.hea
 
 
 @app.route("/")
