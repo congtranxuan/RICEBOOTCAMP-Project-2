@@ -1,31 +1,51 @@
-function plot(year) {
+function plot(year,choice) {
     
-    d3.csv("../data/LifeExpectancy.csv").then(function(response, err) {
+    d3.csv("../db/LifeExpectancy.csv").then(function(response, err) {
       if (err) throw err;
 
         console.log(response);
-  
-  
+          
         let data = response;
-
         const arrayColumn = (arr, n) => arr.map(x => x[n]);
+        let continent = arrayColumn(data,"Continent");
+        let countrydata = arrayColumn(data,"Country");
+        yearslice = year.slice(2,4);
+        year_capita = `${year} + "capita"`;
+        Bothsexes_year = `"Bothsexes" + ${yearslice}`;
+       
+        let bothsexesdata = arrayColumn(data,"Bothsexes15");
+        let percentdata = arrayColumn(data,"2015");
+        let capitadata = arrayColumn(data,"2015capita")
+        let country =[];
+        let bothsexes = [];
+        let percent = [];
+        let capita = [];
 
-        let country = arrayColumn(data,"Country");
-        let Bothsexes15 = arrayColumn(data,"Bothsexes15");
-        let E2015 = arrayColumn(data,"2015");
-        let C2015 = arrayColumn(data,"2015capita")
-        console.log(Bothsexes15);
-        console.log(E2015);
-
-        var hovertext1 = [];
-        var hovertext2 =[];
-     for (var i in country) {
-       hovertext1.push(`${country[i]}<br>${E2015[i]}`);
-       hovertext2.push(`${country[i]}<br>${C2015[i]}`);
-     };
+        for(i in continent) {
+          if (choice === "all") {
+              country = countrydata;
+              bothsexes = bothsexesdata;
+              percent = percentdata;
+              capita = capitadata;
+              }
+          else if (choice === continent[i]) {
+              country.push(countrydata[i]);
+              bothsexes.push(bothsexesdata[i]);
+              capita.push(capitadata[i]);
+              percent.push(percentdata[i]);
+              }
+            var hovertext1 = [];
+            var hovertext2 =[];
+            for (var i in country) {
+            hovertext1.push(`${country[i]}<br>${year}: ${percent[i]}`);
+            hovertext2.push(`${country[i]}<br>${year}: ${capita[i]}`);
+            };
+          };
+          
+          
         var trace1 = {
-          x: Bothsexes15,
-          y: E2015,
+          x: bothsexes,
+          y: percent,
           hovertext: country,
           mode: "markers",
           type: "scatter",
@@ -36,8 +56,8 @@ function plot(year) {
           }
         };
         var trace2 = {
-          x: Bothsexes15,
-          y: C2015,
+          x: bothsexes,
+          y: capita,
           hovertext:country,
           yaxis: 'y2',
           mode: "markers",
@@ -71,8 +91,33 @@ function plot(year) {
              
       });
     }
-        plot()
-                        
+
+
+    function init() {
+      // Grab a reference to the dropdown select element
+              // Use the first sample from the list to build the initial plots
+        year ="2015";
+        choice ="all";
+        plot(year,choice);
+      };
+    
+       
+    function update_continent(continent){
+      console.log(continent);
+      var sect = document.getElementById("year");
+      var year = sect.options[sect.selectedIndex].value;
+      plot(year,continent);
+    }
+
+    function update_year(year) {
+      console.log(year);
+      var sect = document.getElementById("continent");
+      var continent = sect.options[sect.selectedIndex].value;
+      plot(year,continent);
+    }
+    // Initialize the plot
+    init();
+   
 
 
 
