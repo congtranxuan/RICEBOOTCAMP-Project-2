@@ -18,7 +18,8 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/database.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+#"postgresql://postgres:Txc08121984$@127.0.0.1:5432/LifeExpectancy"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -27,7 +28,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Metadata = Base.classes.data
+Metadata = Base.classes.HealthExpend1
 
 
 @app.route("/")
