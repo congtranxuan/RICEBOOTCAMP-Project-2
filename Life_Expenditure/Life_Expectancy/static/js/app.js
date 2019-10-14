@@ -31,7 +31,7 @@ function plot(year) {
           type: "scatter",
           name: "%(GDP)",
           marker: {
-            color: "#2077b4",
+            color: "green",
             symbol: "hexagram"
           }
         };
