@@ -28,7 +28,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Metadata = Base.classes.samples
+Metadata = Base.classes.LifeExpectancy
 
 
 @app.route("/")
@@ -108,10 +108,8 @@ def dataquery():
         "2007","2007capita","2006","2006capita","2005","2005capita","2004","2004capita",
         "2003","2003capita","2002","2002capita","2001","2001capita","2000","2000capita"]
 
-    # jsondata = {}
-    # for i in data.columns.length:
-    #     jsondata.update({keys[i] : data.columns[i].values.tolist()})
-
+    (data.columns)
+    return jsonify(keys)
 
     # jsondata = {
     #     "Country": data.Country.values.tolist(),
