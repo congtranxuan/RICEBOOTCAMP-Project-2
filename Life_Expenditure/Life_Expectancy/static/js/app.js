@@ -9,13 +9,17 @@ function plot(year,choice) {
         const arrayColumn = (arr, n) => arr.map(x => x[n]);
         let continent = arrayColumn(data,"Continent");
         let countrydata = arrayColumn(data,"Country");
+        year_capita = year.concat("capita");
+
         yearslice = year.slice(2,4);
-        year_capita = `${year} + "capita"`;
-        Bothsexes_year = `"Bothsexes" + ${yearslice}`;
+        Bothsexes_year = "Bothsexes".concat(yearslice);
+        console.log(Bothsexes_year);
+        console.log(yearslice);
+        console.log(year_capita);
        
-        let bothsexesdata = arrayColumn(data,"Bothsexes15");
-        let percentdata = arrayColumn(data,"2015");
-        let capitadata = arrayColumn(data,"2015capita")
+        let bothsexesdata = arrayColumn(data,Bothsexes_year);
+        let percentdata = arrayColumn(data,year);
+        let capitadata = arrayColumn(data,year_capita)
         let country =[];
         let bothsexes = [];
         let percent = [];
@@ -37,8 +41,8 @@ function plot(year,choice) {
             var hovertext1 = [];
             var hovertext2 =[];
             for (var i in country) {
-            hovertext1.push(`${country[i]}<br>${year}: ${percent[i]}`);
-            hovertext2.push(`${country[i]}<br>${year}: ${capita[i]}`);
+            hovertext1.push(`${country[i]}<br>${year}: ${percent[i]}%`);
+            hovertext2.push(`${country[i]}<br>${year}: ${capita[i]}$`);
             };
           };
           
@@ -46,7 +50,7 @@ function plot(year,choice) {
         var trace1 = {
           x: bothsexes,
           y: percent,
-          hovertext: country,
+          hovertext: hovertext1,
           mode: "markers",
           type: "scatter",
           name: "%(GDP)",
@@ -58,7 +62,7 @@ function plot(year,choice) {
         var trace2 = {
           x: bothsexes,
           y: capita,
-          hovertext:country,
+          hovertext:hovertext2,
           yaxis: 'y2',
           mode: "markers",
           type: "scatter",
@@ -72,14 +76,18 @@ function plot(year,choice) {
         var dataplot = [trace1,trace2];
 
         var layout = {
-          title: "Relationship of Life Expectancy and Healthcare Expenditure",
-          xaxis: { title: "Life Expectation (Years) " },
-          yaxis: { title: "Healthcare Expenditure (HE) %(GDP)" },
-
+          title: `Relationship of Life Expectancy and Healthcare Expenditure<br>Region: ${choice==="all"?"Worldwide":choice} in ${year}`,
+          xaxis: { title: "Life Expectation (Years) ", titlefont: {colorwidth: 2, color: "purple"}
+                },
+          yaxis: { 
+            title: "Healthcare Expenditure (HE) %(GDP)",
+            titlefont: {color: 'green'},
+            tickfont: {color: 'green'},
+          },
           yaxis2: {
             title: "HE perCapita (int$))",
-            titlefont: {color: 'black'},
-            tickfont: {color: 'black'},
+            titlefont: {color: 'red'},
+            tickfont: {color: 'red'},
             //anchor: 'free',
             anchor: 'x',
             overlaying: 'y',
