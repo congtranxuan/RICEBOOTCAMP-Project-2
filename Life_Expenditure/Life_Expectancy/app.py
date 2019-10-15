@@ -108,7 +108,9 @@ def dataquery():
         "2007","2007capita","2006","2006capita","2005","2005capita","2004","2004capita",
         "2003","2003capita","2002","2002capita","2001","2001capita","2000","2000capita"]
 
-    (data.columns)
+    newdata = data["Country"]
+    print(newdata)
+
     return jsonify(keys)
 
     # jsondata = {
