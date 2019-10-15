@@ -2197,4 +2197,12 @@ label {
 
 select {
     font-size: .9rem;
-    padding: 2px 5px;
+	padding: 2px 5px;
+}
+.github {
+		border: 1px solid #ddd;
+		border-radius: 1px;
+		padding: 1px;
+		width: 10px;
+		height: 10px;
+	  }
