@@ -4,7 +4,7 @@ function plot(year,choice) {
       if (err) throw err;
 
         console.log(response);
-          
+        
         let data = response;
         //const arrayColumn = (arr, n) => arr.map(x => x[n]);
         let  year_capita = year.concat("capita");
@@ -22,7 +22,7 @@ function plot(year,choice) {
         let percentdata=[];
         let capitadata=[];
 
-        data.forEach(d=>{
+        data.forEach(data=>{
           let continent_ = data.Continent;//arrayColumn(data,"Continent");
           let countrydata_ = data.Country;//arrayColumn(data,"Country");
           let bothsexesdata_ = data[Bothsexes_year];//arrayColumn(data,Bothsexes_year);
@@ -46,11 +46,7 @@ function plot(year,choice) {
         let female = [];
         let percent = [];
         let capita = [];
-        console.log(Bothsexes_year);
-        console.log(yearslice);
-        console.log(year_capita);
-        console.log(continent);
-        console.log(countrydata);
+        
         for(i in continent) {
           if (choice === "all") {
               country = countrydata;
@@ -139,7 +135,6 @@ function plot(year,choice) {
         plot(year,choice);
       };
     
-       
     function update_continent(continent){
       console.log(continent);
       var sect = document.getElementById("year");

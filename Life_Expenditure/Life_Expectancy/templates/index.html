@@ -36,7 +36,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
 	<!-- Favicon  -->
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     
@@ -57,7 +57,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="images/Ricelogo.svg" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="index.html"><img src="{{ url_for('static', filename='images/Ricelogo.svg') }}" alt="alternative"></a>
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,13 +72,13 @@
                     <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#services">Services</a>
+                    <a class="nav-link page-scroll" href="#services">Map</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#health">Healthcare</a>
+                    <a class="nav-link page-scroll" href="#health">Healthcare Expenditure</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#request">Request</a>
+                    <a class="nav-link page-scroll" href="#request">Water and Sanitation</a>
                 </li>
 
                 <!-- Dropdown Menu -->          
@@ -129,7 +129,7 @@
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
                         <div class="image-container">
-                            <img class="img-fluid" src="images/header-teamwork.svg" alt="alternative">
+                            <img class="img-fluid" src="{{ url_for('static', filename='images/header-teamwork.svg') }}" alt="alternative">
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -152,32 +152,32 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-1.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-1.png') }}" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-2.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-2.png') }}" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-3.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-3.png') }}" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-4.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-4.png') }}" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-5.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-5.png') }}" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="images/customer-logo-6.png" alt="alternative">
+                                        <img class="img-responsive" src="{{ url_for('static', filename='images/customer-logo-6.png') }}" alt="alternative">
                                     </div>
                                 </div>
                             </div> <!-- end of swiper-wrapper -->
@@ -206,7 +206,7 @@
 
                     <!-- Card -->
                     <div class="card">
-                        <img class="card-image" src="images/services-icon-1.svg" alt="alternative">
+                        <img class="card-image" src="{{ url_for('static', filename='images/services-icon-1.svg') }}"alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title">Market Analysis</h4>
                             <p>Our team of enthusiastic marketers will analyse and evaluate how your company stacks against the closest competitors</p>
