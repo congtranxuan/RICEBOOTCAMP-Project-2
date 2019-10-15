@@ -1,40 +1,70 @@
 function plot(year,choice) {
     
-    d3.csv("../db/LifeExpectancy.csv").then(function(response, err) {
+    d3.json("/data").then(function(response, err) {
       if (err) throw err;
 
         console.log(response);
           
         let data = response;
-        const arrayColumn = (arr, n) => arr.map(x => x[n]);
-        let continent = arrayColumn(data,"Continent");
-        let countrydata = arrayColumn(data,"Country");
-        year_capita = year.concat("capita");
+        //const arrayColumn = (arr, n) => arr.map(x => x[n]);
+        let  year_capita = year.concat("capita");
 
-        yearslice = year.slice(2,4);
-        Bothsexes_year = "Bothsexes".concat(yearslice);
+        let yearslice = year.slice(2,4);
+        let Bothsexes_year = "Bothsexes".concat(yearslice);
+        let Male_year = "Male".concat(yearslice);
+        let Female_year = "Female".concat(yearslice);
+
+        let continent =[];
+        let countrydata=[];
+        let bothsexesdata=[];
+        let maledata=[];
+        let femaledata=[];
+        let percentdata=[];
+        let capitadata=[];
+
+        data.forEach(d=>{
+          let continent_ = data.Continent;//arrayColumn(data,"Continent");
+          let countrydata_ = data.Country;//arrayColumn(data,"Country");
+          let bothsexesdata_ = data[Bothsexes_year];//arrayColumn(data,Bothsexes_year);
+          let maledata_ = data[Male_year];
+          let femaledata_ = data[Female_year];
+          let percentdata_ = data[year];//arrayColumn(data,year);
+          let capitadata_ = data[year_capita];//arrayColumn(data,year_capita)
+
+          continent.push(continent_);
+          countrydata.push(countrydata_);
+          bothsexesdata.push(bothsexesdata_);
+          maledata.push(maledata_);
+          femaledata.push(femaledata_);
+          percentdata.push(percentdata_);
+          capitadata.push(capitadata_);
+        });
+
+        let country =[];
+        let bothsexes = [];
+        let male = [];
+        let female = [];
+        let percent = [];
+        let capita = [];
         console.log(Bothsexes_year);
         console.log(yearslice);
         console.log(year_capita);
-       
-        let bothsexesdata = arrayColumn(data,Bothsexes_year);
-        let percentdata = arrayColumn(data,year);
-        let capitadata = arrayColumn(data,year_capita)
-        let country =[];
-        let bothsexes = [];
-        let percent = [];
-        let capita = [];
-
+        console.log(continent);
+        console.log(countrydata);
         for(i in continent) {
           if (choice === "all") {
               country = countrydata;
               bothsexes = bothsexesdata;
+              male = maledata;
+              female = femaledata;
               percent = percentdata;
               capita = capitadata;
               }
           else if (choice === continent[i]) {
               country.push(countrydata[i]);
               bothsexes.push(bothsexesdata[i]);
+              male.push(maledata[i]);
+              female.push(femaledata[i]);
               capita.push(capitadata[i]);
               percent.push(percentdata[i]);
               }
