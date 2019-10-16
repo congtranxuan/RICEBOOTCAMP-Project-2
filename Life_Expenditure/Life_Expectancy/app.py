@@ -110,6 +110,16 @@ def dataquery():
       
     return jsonify(jsondata)
 
+@app.route("/country")
+def namequery():
+
+    stmt = db.session.query(Metadata).statement
+    data = pd.read_sql_query(stmt, db.session.bind)
+    countries = data["Country"]
+    return jsonify(list(countries))
+
+
+
 if __name__ == "__main__":
     app.run()
 

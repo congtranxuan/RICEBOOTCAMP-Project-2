@@ -1,4 +1,4 @@
-function plot(year,choice) {
+function plotscatter(year,choice) {
     
     d3.json("/data").then(function(response, err) {
       if (err) throw err;
@@ -130,23 +130,37 @@ function plot(year,choice) {
     function init() {
       // Grab a reference to the dropdown select element
               // Use the first sample from the list to build the initial plots
+        var selector = d3.select("#seldata");
+
+        // Use the list of sample names to populate the select options
+        d3.json("/country").then((sampleNames) => {
+          console.log(sampleNames);
+          sampleNames.forEach((sample) => {
+            selector
+              .append("option")
+              .text(sample)
+              .property("value", sample);
+          });
+        });
+
+
         year ="2015";
         choice ="all";
-        plot(year,choice);
+        plotscatter(year,choice);
       };
     
     function update_continent(continent){
       console.log(continent);
       var sect = document.getElementById("year");
       var year = sect.options[sect.selectedIndex].value;
-      plot(year,continent);
+      plotscatter(year,continent);
     }
 
     function update_year(year) {
       console.log(year);
       var sect = document.getElementById("continent");
       var continent = sect.options[sect.selectedIndex].value;
-      plot(year,continent);
+      plotscatter(year,continent);
     }
     // Initialize the plot
     init();
