@@ -81,7 +81,7 @@ function plot(year,choice) {
           type: "scatter",
           name: "%(GDP)",
           marker: {
-            color: "green",
+            color: "#00bfd8",
             symbol: "hexagram"
           }
         };
@@ -94,7 +94,7 @@ function plot(year,choice) {
           type: "scatter",
           name: "perCapita (Int$)",
           marker: {
-            color: "red",
+            color: "black",
             symbol: "circle"
           }
         };
@@ -103,17 +103,17 @@ function plot(year,choice) {
 
         var layout = {
           title: `Relationship of Life Expectancy and Healthcare Expenditure<br>Region: ${choice==="all"?"Worldwide":choice} in ${year}`,
-          xaxis: { title: "Life Expectation (Years) ", titlefont: {colorwidth: 2, color: "purple"}
+          xaxis: { title: "Life Expectation (Years) ", titlefont: {colorwidth: 2, color: "black"}
                 },
           yaxis: { 
             title: "Healthcare Expenditure (HE) %(GDP)",
-            titlefont: {color: 'green'},
-            tickfont: {color: 'green'},
+            titlefont: {color: '#00bfd8'},
+            tickfont: {color: '#00bfd8'},
           },
           yaxis2: {
             title: "HE perCapita (int$))",
-            titlefont: {color: 'red'},
-            tickfont: {color: 'red'},
+            titlefont: {color: 'black'},
+            tickfont: {color: 'black'},
             //anchor: 'free',
             anchor: 'x',
             overlaying: 'y',
