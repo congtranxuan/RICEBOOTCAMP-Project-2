@@ -104,9 +104,6 @@ function makeResponsive(GlobalYear, Globalval1) {
     yLinearScale,
     chosenYAxis
   ) {
-    console.log(data);
-    console.log(chosenYAxis);
-    console.log(data.map(d => d[chosenYAxis]));
     circlesGroup
       .transition()
       .duration(1000)
@@ -296,6 +293,7 @@ function makeResponsive(GlobalYear, Globalval1) {
   // Retrieve data from the CSV file and execute everything below
 
   //d3.csv("assets/data/" + GlobalYear + ".csv")
+  // d3.csv("{{url_for('static', filename='db/data.csv')}}")
   d3.csv("static/db/data.csv")
     .then(function(countrydata, err) {
       if (err) throw err;
