@@ -2,11 +2,10 @@ function plotbar(from_year,to_year,choice) {
     
   d3.json("/data").then(function(response, err) {
     if (err) throw err;
-
-    var hi = "hi"
-    console.log(hi.length);
+    console.log(choice.length);
     console.log(response);
-    var year = from_year;
+    var year = parseInt(from_year);
+    console.log(year);
     
     
    
@@ -21,16 +20,17 @@ function plotbar(from_year,to_year,choice) {
       var hovertext2 =[];
       var hovertext3 = [];
 
-      if (from_year >= to_year) {
+      if (parseInt(from_year) >= parseInt(to_year)) {
       var year_length = 1;
       } 
       else {
-      var year_length = to_year - from_year + 1;
+      var year_length = parseInt(to_year) - parseInt(from_year) + 1;
       }
-
+      console.log(year_length);
         for (i=0; i<year_length; i++){
-        yearX.push(year+i);
-        let yearslice = (year+i).slice(2,4);
+        yearX.push(parseInt(year)+i);
+        let yearslice = ((parseInt(year)+i).toString()).slice(2,4);
+        console.log(yearslice);
         let Bothsexes_year = "Bothsexes".concat(yearslice);
         let Male_year = "Male".concat(yearslice);
         let Female_year = "Female".concat(yearslice);
@@ -50,10 +50,15 @@ function plotbar(from_year,to_year,choice) {
         maledata.push(maledata_);
         femaledata.push(femaledata_);
         });
+        console.log(countrydata);
+        console.log(bothsexesdata);
+        console.log(maledata);
+        console.log(femaledata);
+
         
 
         for (j in countrydata){
-           if (choice === countrydata[j]){
+           if (choice[0] === countrydata[j]){
             bothsexes.push(bothsexesdata[i]);
             male.push(maledata[j]);
             female.push(femaledata[j]);
@@ -62,35 +67,41 @@ function plotbar(from_year,to_year,choice) {
             hovertext3.push(`${choice}<br>Female: ${femaledata[j]}(years)`)
             }
         }
+        console.log(bothsexes);
+        console.log(choice);
       }
       var trace1 = {
         x: yearX,
         y: bothsexes,
         name: 'Bothsexes',
         type: 'bar',
-        hovertext: hovertext1
+        text: hovertext1
       };
       var trace2 = {
         x: yearX,
         y: male,
         name: 'Male',
         type: 'bar',
-        hovertext: hovertext2
+        text: hovertext2
       };
       var trace3 = {
         x: yearX,
         y: female,
         name: 'Female',
         type: 'bar',
-        hovertext: hovertext3
+        text: hovertext3
        };
        databar = [trace1,trace2,trace3];
        console.log(databar)
        var layout = {
         xaxis: {title: 'Time'},
-        yaxis: {title: 'Life Expectancy(years)'},
-        barmode: 'relative',
-        title: 'Life Expectancy at Birth (years)'
+        yaxis: {title: `Life Expectancy(years)`},
+        barmode: 'group',
+        bargap: 0.15,
+        bargroupgap: 0.1,
+       // barmode: 'relative',
+        title: `<b>Life Expectancy at Birth (years)</b>`
+
       };
 
     }
@@ -101,19 +112,20 @@ function plotbar(from_year,to_year,choice) {
            
      
       var hovertext1 = [];
-      var hovertext2 =[];
+      var hovertext2 = [];
       
 
-      if (from_year >= to_year) {
+      if (parseInt(from_year) >= parseInt(to_year)) {
       var year_length = 1;
       } 
       else {
-      var year_length = to_year - from_year + 1;
+      var year_length = parseInt(to_year) - parseInt(from_year) + 1;
       }
 
         for (i=0; i<year_length; i++){
-        yearX.push(year+i);
-        let yearslice = (year+i).slice(2,4);
+        yearX.push(parseInt(year)+i);
+        console.log(yearX);
+        let yearslice = ((parseInt(year)+i).toString()).slice(2,4);
         let Bothsexes_year = "Bothsexes".concat(yearslice);
     
         let countrydata=[];
@@ -133,9 +145,11 @@ function plotbar(from_year,to_year,choice) {
            }
            else if (countrydata[j] === choice[1]) {
              nation2.push(bothsexesdata[j]);
-             hovertext1.push(`${choice[1]}<br>Bothsexes: ${bothsexesdata[j]}(years)`);
+             hovertext2.push(`${choice[1]}<br>Bothsexes: ${bothsexesdata[j]}(years)`);
            }
           }
+          console.log(hovertext1);
+          console.log(hovertext2);
            
         }
         var trace1 = {
@@ -143,14 +157,14 @@ function plotbar(from_year,to_year,choice) {
           y: nation1,
           name: `${choice[0]}`,
           type: 'bar',
-          hovertext: hovertext1
-        };
+          text: hovertext1
+          };
         var trace2 = {
           x: yearX,
           y: nation2,
           name: `${choice[1]}`,
           type: 'bar',
-          hovertext: hovertext2
+          text: hovertext2
         };
        
          databar = [trace1,trace2];
@@ -158,7 +172,10 @@ function plotbar(from_year,to_year,choice) {
          var layout = {
           xaxis: {title: 'Time'},
           yaxis: {title: 'Life Expectancy(years)'},
-          barmode: 'relative',
+          barmode: 'group',
+          bargap: 0.15,
+          bargroupgap: 0.1,
+          //barmode: 'relative',
           title: 'Life Expectancy at Birth (years)'
         };
       }
@@ -270,7 +287,7 @@ function plotscatter(year,choice) {
         var dataplot = [trace1,trace2];
 
         var layout = {
-          title: `Relationship of Life Expectancy and Healthcare Expenditure<br>Region: ${choice==="all"?"Worldwide":choice} in ${year}`,
+          title: `<b>Relationship of Life Expectancy and Healthcare Expenditure</b><br>Region: ${choice==="all"?"Worldwide":choice} in ${year}`,
           xaxis: { title: "Life Expectation (Years) ", titlefont: {colorwidth: 2, color: "black"}
                 },
           yaxis: { 
@@ -318,7 +335,7 @@ function plotscatter(year,choice) {
 
         year_from = "2000";
         year_to = "2016";
-        country = "United States of America";
+        country = ["United States of America"];
         plotbar(year_from,year_to,country)
 
       };
