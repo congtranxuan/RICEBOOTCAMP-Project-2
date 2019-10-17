@@ -32,6 +32,7 @@ function plotbar(from_year,to_year,choice) {
         let yearslice = ((parseInt(year)+i).toString()).slice(2,4);
         console.log(yearslice);
         let Bothsexes_year = "Bothsexes".concat(yearslice);
+        console.log(Bothsexes_year);
         let Male_year = "Male".concat(yearslice);
         let Female_year = "Female".concat(yearslice);
         let countrydata=[];
