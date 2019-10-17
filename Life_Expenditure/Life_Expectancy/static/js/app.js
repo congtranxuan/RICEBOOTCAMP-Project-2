@@ -59,7 +59,7 @@ function plotbar(from_year,to_year,choice) {
 
         for (j in countrydata){
            if (choice[0] === countrydata[j]){
-            bothsexes.push(bothsexesdata[i]);
+            bothsexes.push(bothsexesdata[j]);
             male.push(maledata[j]);
             female.push(femaledata[j]);
             hovertext1.push(`${choice}<br>Bothsexes: ${bothsexesdata[j]}(years)`);
@@ -75,6 +75,8 @@ function plotbar(from_year,to_year,choice) {
         y: bothsexes,
         name: 'Bothsexes',
         type: 'bar',
+        marker: {
+          color: '#00bfd8'},
         text: hovertext1
       };
       var trace2 = {
@@ -82,6 +84,8 @@ function plotbar(from_year,to_year,choice) {
         y: male,
         name: 'Male',
         type: 'bar',
+        marker: {
+          color: 'rgb(204,204,204)'},
         text: hovertext2
       };
       var trace3 = {
@@ -89,6 +93,8 @@ function plotbar(from_year,to_year,choice) {
         y: female,
         name: 'Female',
         type: 'bar',
+        marker: {
+          color: 'black'},
         text: hovertext3
        };
        databar = [trace1,trace2,trace3];
@@ -157,6 +163,8 @@ function plotbar(from_year,to_year,choice) {
           y: nation1,
           name: `${choice[0]}`,
           type: 'bar',
+          marker: {
+            color: '#00bfd8'},
           text: hovertext1
           };
         var trace2 = {
@@ -164,6 +172,8 @@ function plotbar(from_year,to_year,choice) {
           y: nation2,
           name: `${choice[1]}`,
           type: 'bar',
+          marker: {
+            color: 'rgb(204,204,204)'},
           text: hovertext2
         };
        
