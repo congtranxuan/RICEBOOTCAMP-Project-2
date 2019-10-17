@@ -1,3 +1,17 @@
+function plotschart(year,choice) {
+    
+  d3.json("/data").then(function(response, err) {
+    if (err) throw err;
+
+      console.log(response);
+      
+      let data = response;
+
+
+  });
+}
+
+
 function plotscatter(year,choice) {
     
     d3.json("/data").then(function(response, err) {
@@ -130,7 +144,7 @@ function plotscatter(year,choice) {
     function init() {
       // Grab a reference to the dropdown select element
               // Use the first sample from the list to build the initial plots
-        var selector = d3.select("#seldata");
+        var selector = d3.select("#selData");
 
         // Use the list of sample names to populate the select options
         d3.json("/country").then((sampleNames) => {
@@ -162,6 +176,25 @@ function plotscatter(year,choice) {
       var continent = sect.options[sect.selectedIndex].value;
       plotscatter(year,continent);
     }
+
+
+    function getChoices(){
+      //retrieve data
+      var selLanguage = document.getElementById("selData");
+      //set up output string
+      var result = [];
+      //step through options
+      for (i = 0; i < selLanguage.length; i++){
+       //examine current option
+       currentOption = selLanguage[i];
+       //print it if it has been selected
+       if (currentOption.selected == true){
+       result.push(currentOption.value)
+       } // end if
+      } // end for loop
+      console.log(result);
+      return result;
+      }
     // Initialize the plot
     init();
    
@@ -196,3 +229,4 @@ function plotscatter(year,choice) {
   
 //   // Initialize the dashboard
 //   init();
+
