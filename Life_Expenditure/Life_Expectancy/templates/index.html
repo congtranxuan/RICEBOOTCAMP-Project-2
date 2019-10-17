@@ -37,6 +37,27 @@
 
 	<!-- Favicon  -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/d3Style.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/app1.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/d3.js')}}"></script>
+
+
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     
@@ -318,7 +339,88 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Water and Sanitation </h2>
-                    
+    <body onload="makeResponsive('2010','W');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <h1 align="center">
+                        The Effect of Water and Sanitation on Life Expectancy
+                    </h1>
+                </div>
+            </div>
+            <di>
+                <br /><br />
+                <table align="right">
+                    <tr>
+                        <td>
+                            <div id="info1" style="text-align: center;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data loaded ...
+                            </div>
+                        </td>
+                        <td>
+                            <div id="info2"></div>
+                            <select id="years" onChange="changeYear();">
+                                <option value="" selected>2016</option>
+                                <option value="">2010</option>
+                                <option value="">2000</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input id="info2" type="radio" name="op1" value="W" onChange="changeYear();" checked />
+                            Water <br />
+                            <input id="info2" type="radio" name="op1" value="S" onChange="changeYear();" />
+                            Sanitation <br />
+                        </td>
+                    </tr>
+                </table>
+            </di>
+            <div class="row">
+                <div class="col-xs-12  col-md-9">
+                    <div id="scatter">
+                        <!-- We append our chart here. -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12  col-md-9">
+                    <div class="article">
+                        <h2>
+                            Correlations Discovered Between Health Risks and Age, Income
+                        </h2>
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et
+                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
+                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
+                            placerat eleifend leo.
+                        </p>
+    
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et
+                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
+                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
+                            placerat eleifend leo.
+                        </p>
+    
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et
+                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
+                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
+                            placerat eleifend leo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
 
@@ -346,7 +448,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>About The Team</h2>
-                    <p class="p-heading p-large">Meat our team of specialized marketers and business developers which will help you research new products and launch them in new emerging markets</p>
+                    <p class="p-heading p-large">Meet our team of analysts who have analyzed the effects of health, water and sanitation on Life Expectancy globally. </p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -357,8 +459,8 @@
                         <div class="image-wrapper">
                             <img class="img-fluid" src="images/team-member-1.svg" alt="alternative">
                         </div> <!-- end of image-wrapper -->
-                        <p class="p-large"><strong>Lacy Whitelong</strong></p>
-                        <p class="job-title">Business Developer</p>
+                        <p class="p-large"><strong>Nithya Iyengar</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
                                 <a href="#your-link">
@@ -381,8 +483,8 @@
                         <div class="image-wrapper">
                             <img class="img-fluid" src="images/team-member-2.svg" alt="alternative">
                         </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Chris Brown</strong></p>
-                        <p class="job-title">Online Marketer</p>
+                        <p class="p-large"><strong>Xuan Cong Tran</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
                                 <a href="#your-link">
@@ -405,8 +507,8 @@
                         <div class="image-wrapper">
                             <img class="img-fluid" src="images/team-member-3.svg" alt="alternative">
                         </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Sheila Zimerman</strong></p>
-                        <p class="job-title">Software Engineer</p>
+                        <p class="p-large"><strong>Misael Obregon</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
                                 <a href="#your-link">
@@ -423,31 +525,6 @@
                         </span> <!-- end of social-icons -->
                     </div> <!-- end of team-member -->
                     <!-- end of team member -->
-
-                    <!-- Team Member -->
-                    <div class="team-member">
-                        <div class="image-wrapper">
-                            <img class="img-fluid" src="images/team-member-4.svg" alt="alternative">
-                        </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Mary Villalonga</strong></p>
-                        <p class="job-title">Product Manager</p>
-                        <span class="social-icons">
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
-                                </a>
-                            </span>
-                        </span> <!-- end of social-icons -->
-                    </div> <!-- end of team-member -->
-                    <!-- end of team member -->
-
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -551,5 +628,27 @@
     <!--<script src="../static/js/app.js"></script>-->
     <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script type="text/javascript">
+    function changeYear() {
+        //alert(document.querySelector('input[id="info2"]:checked').value);
+        var yr = document.querySelector("#years").selectedOptions; //getElementById("years");
+        var yr2;
+        for (let i = 0; i < yr.length; i++) {
+            console.log("Selected Year : " + yr[i].text);
+            yr2 = yr[i].text;
+            console.log(yr2)
+        }
+        makeResponsive(
+            yr2,
+            document.querySelector('input[id="info2"]:checked').value
+        );
+        GlobalvalueUpdate(
+            yr2,
+            document.querySelector('input[id="info2"]:checked').value
+        );
+    }
+</script>
+
+
 </body>
 </html>
