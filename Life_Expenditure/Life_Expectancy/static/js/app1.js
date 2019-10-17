@@ -4,13 +4,33 @@ function GlobalvalueUpdate(year2, val2) {
   Globalval1 = val2;
 }
 
+function changeYear() {
+  //alert(document.querySelector('input[id="info2"]:checked').value);
+  var yr = document.querySelector("#years").selectedOptions; //getElementById("years");
+  var yr2;
+  for (let i = 0; i < yr.length; i++) {
+    console.log("Selected Year : " + yr[i].text);
+    yr2 = yr[i].text;
+    console.log(yr2);
+  }
+  makeResponsive(
+    yr2,
+    document.querySelector('input[id="info2"]:checked').value
+  );
+  GlobalvalueUpdate(
+    yr2,
+    document.querySelector('input[id="info2"]:checked').value
+  );
+}
+
 function makeResponsive(GlobalYear, Globalval1) {
   // if the SVG area isn't empty when the browser loads,
   // remove it and replace it with a resized version of the chart
-  var svgArea = d3.select("body").select("svg");
+  var svgArea = d3.select("#scatter").select("svg");
   /////////////////////////////////////////////////BEGIN2
   // clear svg is not empty
   if (!svgArea.empty()) {
+    console.log("remove");
     svgArea.remove();
   }
 
@@ -41,8 +61,10 @@ function makeResponsive(GlobalYear, Globalval1) {
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   // Initial Params
-  var chosenXAxis = "Life Expectancy";
-  var chosenYAxis = "Water & Sanitation";
+  // var chosenXAxis = "Life Expectancy";
+  // var chosenYAxis = "Water & Sanitation";
+  var chosenXAxis = "Totallife2016";
+  var chosenYAxis = "W2016Total";
 
   // function used for updating x-scale var upon click on axis label
   function xScale(data, chosenXAxis) {
@@ -104,10 +126,15 @@ function makeResponsive(GlobalYear, Globalval1) {
     yLinearScale,
     chosenYAxis
   ) {
+    console.log(chosenXAxis);
     circlesGroup
       .transition()
       .duration(1000)
-      .attr("cx", d => xLinearScale(d[chosenXAxis]))
+      .attr("cx", d => {
+        console.log(d[chosenXAxis]);
+        console.log(xLinearScale(d[chosenXAxis]));
+        return xLinearScale(d[chosenXAxis]);
+      })
       .attr("cy", d => yLinearScale(d[chosenYAxis]))
       // .attr("fill", (d, i) => {
       //   // console.log(d[chosenYAxis]);
@@ -293,7 +320,6 @@ function makeResponsive(GlobalYear, Globalval1) {
   // Retrieve data from the CSV file and execute everything below
 
   //d3.csv("assets/data/" + GlobalYear + ".csv")
-  // d3.csv("{{url_for('static', filename='db/data.csv')}}")
   d3.csv("static/db/data.csv")
     .then(function(countrydata, err) {
       if (err) throw err;
@@ -363,11 +389,10 @@ function makeResponsive(GlobalYear, Globalval1) {
       // append initial circles
       var myColor = d3
         .scaleOrdinal()
-        // .scaleSequential()
         .domain(countrydata)
-        //.interpolator(d3.interpolateRdYlGn);
         .range(d3.schemeCategory10);
-      //.range(d3.schemeRdYlGn[(3, 11)]);
+      console.log(chosenXAxis);
+
       var circlesGroup = chartGroup
         .selectAll("circle")
         .data(countrydata)
@@ -466,7 +491,8 @@ function makeResponsive(GlobalYear, Globalval1) {
         .attr("value", Globalval1 + GlobalYear + "Total") // value to grab for event listener
         .classed("inactive", true)
         .text("Total (%)");
-
+      console.log(Globalval1);
+      console.log(GlobalYear);
       // updateToolTip for the current circles
       var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
@@ -537,6 +563,7 @@ function makeResponsive(GlobalYear, Globalval1) {
         if (value !== chosenYAxis) {
           // replaces chosenYAxis with value
           chosenYAxis = value;
+          console.log(chosenYAxis);
 
           // console.log(chosenYAxis)
 

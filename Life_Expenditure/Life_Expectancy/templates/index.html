@@ -53,13 +53,12 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-<script type="text/javascript" src="static/js/app1.js"></script>
 <script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="static/js/d3.js"></script>
 
 
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
+<body data-spy="scroll" data-target=".fixed-top" onload="makeResponsive('2010','W');">
     
     <!-- Preloader -->
 	<div class="spinner-wrapper">
@@ -99,7 +98,7 @@
                     <a class="nav-link page-scroll" href="#health">Healthcare</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#sanitation">Sanitation</a>
+                    <a class="nav-link page-scroll" href="#sanitation">Water & Sanitation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#about">About Us</a>
@@ -334,21 +333,20 @@
     
 
     <!-- Sanitation -->
-    <div class="cards-2">
+    <div id="sanitation" class="cards-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Water and Sanitation </h2>
-    <body onload="makeResponsive('2010','W');">
+                    <h2 align="center"> The Effect of Water and Sanitation on Life Expectancy</h2>
+                    
+    
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-12">
-                    <h1 align="center">
-                        The Effect of Water and Sanitation on Life Expectancy
-                    </h1>
+                    
                 </div>
             </div>
-            <di>
+            <div>
                 <br /><br />
                 <table align="right">
                     <tr>
@@ -359,7 +357,7 @@
                         </td>
                         <td>
                             <div id="info2"></div>
-                            <select id="years" onChange="changeYear();">
+                            <select id="years" onchange="changeYear();">
                                 <option value="" selected>2016</option>
                                 <option value="">2010</option>
                                 <option value="">2000</option>
@@ -373,14 +371,14 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input id="info2" type="radio" name="op1" value="W" onChange="changeYear();" checked />
+                            <input id="info2" type="radio" name="op1" value="W" onchange="changeYear();" checked />
                             Water <br />
-                            <input id="info2" type="radio" name="op1" value="S" onChange="changeYear();" />
+                            <input id="info2" type="radio" name="op1" value="S" onchange="changeYear();" />
                             Sanitation <br />
                         </td>
                     </tr>
                 </table>
-            </di>
+            </div>
             <div class="row">
                 <div class="col-xs-12  col-md-9">
                     <div id="scatter">
@@ -389,34 +387,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12  col-md-9">
+                <div class="col-xs-14  col-md-12">
                     <div class="article">
-                        <h2>
-                            Correlations Discovered Between Health Risks and Age, Income
-                        </h2>
-                        <p>
-                            Pellentesque habitant morbi tristique senectus et netus et
-                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
-                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                            placerat eleifend leo.
-                        </p>
-    
-                        <p>
-                            Pellentesque habitant morbi tristique senectus et netus et
-                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
-                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                            placerat eleifend leo.
-                        </p>
-    
-                        <p>
-                            Pellentesque habitant morbi tristique senectus et netus et
-                            malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
-                            vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-                            amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                            placerat eleifend leo.
-                        </p>
+                        <p class="p-heading p-large">
+                            The above graph shows the interaction terms between access to improved sanitation and improved water.
+                            The percentage of people living past the life expectancy increased, access to
+                            improved safe water and sanitation increases as well.</p>
+                         <p class="p-heading p-large">
+                            With this graph we can conclude our analysis that access to improved sanitation is very significant to life expectancy, with access to
+                            improved water conditions coming close behind.
+                         </p>   
+                
+                        
                     </div>
                 </div>
             </div>
@@ -463,15 +445,9 @@
                         <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="https://www.linkedin.com/in/nithiye/">
+                                    <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
@@ -487,15 +463,9 @@
                         <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="linkedin.com/in/xuancong-tran-mba-me">
+                                    <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
@@ -505,21 +475,15 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="static/images/team-member-3.svg" alt="alternative">
+                            <img class="img-fluid" src="static/images/team-member-2.svg" alt="alternative">
                         </div> <!-- end of image wrapper -->
                         <p class="p-large"><strong>Misael Obregon</strong></p>
                         <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="linkedin.com/in/misael-obregon-phd">
+                                <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
@@ -628,26 +592,11 @@
     <!--<script src="../static/js/app.js"></script>-->
     <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-<script type="text/javascript">
-    function changeYear() {
-        //alert(document.querySelector('input[id="info2"]:checked').value);
-        var yr = document.querySelector("#years").selectedOptions; //getElementById("years");
-        var yr2;
-        for (let i = 0; i < yr.length; i++) {
-            console.log("Selected Year : " + yr[i].text);
-            yr2 = yr[i].text;
-            console.log(yr2)
-        }
-        makeResponsive(
-            yr2,
-            document.querySelector('input[id="info2"]:checked').value
-        );
-        GlobalvalueUpdate(
-            yr2,
-            document.querySelector('input[id="info2"]:checked').value
-        );
-    }
-</script>
+    <script type="text/javascript" src="static/js/app1.js"></script>
+<!-- <script type="text/javascript">
+   
+   
+</script> -->
 
 
 </body>
