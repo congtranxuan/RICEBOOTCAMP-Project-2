@@ -22,11 +22,11 @@
     
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/fontawesome-all.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/swiper.css') }}" rel="stylesheet">
-	<link href="{{ url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="static/css/swiper.css" rel="stylesheet">
+	<link href="static/css/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
     
    
     
@@ -37,8 +37,28 @@
 
 	<!-- Favicon  -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+<link rel="stylesheet" href="static/css/style.css" />
+<link rel="stylesheet" href="static/css/d3Style.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="static/js/d3.js"></script>
+
+
 </head>
-<body data-spy="scroll" data-target=".fixed-top">
+<body data-spy="scroll" data-target=".fixed-top" onload="makeResponsive('2010','W');">
     
     <!-- Preloader -->
 	<div class="spinner-wrapper">
@@ -57,7 +77,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="/"><img src="{{ url_for('static', filename='images/Ricelogo.svg') }}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="/"><img src="static/images/Ricelogo.svg" alt="alternative"></a>
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +98,7 @@
                     <a class="nav-link page-scroll" href="#health">Healthcare</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#sanitation">Sanitation</a>
+                    <a class="nav-link page-scroll" href="#sanitation">Water & Sanitation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#about">About Us</a>
@@ -132,7 +152,7 @@
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
                         <div class="image-container">
-                            <img class="img-fluid" src="{{ url_for('static', filename='images/header-teamwork.svg') }}" alt="alternative">
+                            <img class="img-fluid" src="static/images/header-teamwork.svg" alt="alternative">
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -305,12 +325,76 @@
         
 
     <!-- Sanitation -->
-    <div class="cards-2">
+    <div id="sanitation" class="cards-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Water and Sanitation </h2>
+                    <h2 align="center"> The Effect of Water and Sanitation on Life Expectancy</h2>
                     
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    
+                </div>
+            </div>
+            <div>
+                <br /><br />
+                <table align="right">
+                    <tr>
+                        <td>
+                            <div id="info1" style="text-align: center;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data loaded ...
+                            </div>
+                        </td>
+                        <td>
+                            <div id="info2"></div>
+                            <select id="years" onchange="changeYear();">
+                                <option value="" selected>2016</option>
+                                <option value="">2010</option>
+                                <option value="">2000</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input id="info2" type="radio" name="op1" value="W" onchange="changeYear();" checked />
+                            Water <br />
+                            <input id="info2" type="radio" name="op1" value="S" onchange="changeYear();" />
+                            Sanitation <br />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-12  col-md-9">
+                    <div id="scatter">
+                        <!-- We append our chart here. -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-14  col-md-12">
+                    <div class="article">
+                        <p class="p-heading p-large">
+                            The above graph shows the interaction terms between access to improved sanitation and improved water.
+                            The percentage of people living past the life expectancy increased, access to
+                            improved safe water and sanitation increases as well.</p>
+                         <p class="p-heading p-large">
+                            With this graph we can conclude our analysis that access to improved sanitation is very significant to life expectancy, with access to
+                            improved water conditions coming close behind.
+                         </p>   
+                
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
 
@@ -338,7 +422,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>About The Team</h2>
-                    <p class="p-heading p-large">Meat our team of specialized marketers and business developers which will help you research new products and launch them in new emerging markets</p>
+                    <p class="p-heading p-large">Meet our team of analysts who have analyzed the effects of health, water and sanitation on Life Expectancy globally. </p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -347,21 +431,15 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="images/team-member-1.svg" alt="alternative">
+                            <img class="img-fluid" src="static/images/team-member-1.svg" alt="alternative">
                         </div> <!-- end of image-wrapper -->
-                        <p class="p-large"><strong>Lacy Whitelong</strong></p>
-                        <p class="job-title">Business Developer</p>
+                        <p class="p-large"><strong>Nithya Iyengar</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="https://www.linkedin.com/in/nithiye/">
+                                    <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
@@ -371,21 +449,15 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="images/team-member-2.svg" alt="alternative">
+                            <img class="img-fluid" src="static/images/team-member-2.svg" alt="alternative">
                         </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Chris Brown</strong></p>
-                        <p class="job-title">Online Marketer</p>
+                        <p class="p-large"><strong>Xuan Cong Tran</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="linkedin.com/in/xuancong-tran-mba-me">
+                                    <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
@@ -395,51 +467,20 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="images/team-member-3.svg" alt="alternative">
+                            <img class="img-fluid" src="static/images/team-member-2.svg" alt="alternative">
                         </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Sheila Zimerman</strong></p>
-                        <p class="job-title">Software Engineer</p>
+                        <p class="p-large"><strong>Misael Obregon</strong></p>
+                        <p class="job-title">Student Analyst</p>
                         <span class="social-icons">
                             <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                <a href="linkedin.com/in/misael-obregon-phd">
+                                <i class="fas fa-circle fa-stack-2x linkedin"></i>
+                                <i class="fab fa-linkedin-in fa-stack-1x"></i>
                                 </a>
                             </span>
                         </span> <!-- end of social-icons -->
                     </div> <!-- end of team-member -->
                     <!-- end of team member -->
-
-                    <!-- Team Member -->
-                    <div class="team-member">
-                        <div class="image-wrapper">
-                            <img class="img-fluid" src="images/team-member-4.svg" alt="alternative">
-                        </div> <!-- end of image wrapper -->
-                        <p class="p-large"><strong>Mary Villalonga</strong></p>
-                        <p class="job-title">Product Manager</p>
-                        <span class="social-icons">
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x facebook"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
-                                </a>
-                            </span>
-                            <span class="fa-stack">
-                                <a href="#your-link">
-                                    <i class="fas fa-circle fa-stack-2x twitter"></i>
-                                    <i class="fab fa-twitter fa-stack-1x"></i>
-                                </a>
-                            </span>
-                        </span> <!-- end of social-icons -->
-                    </div> <!-- end of team-member -->
-                    <!-- end of team member -->
-
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -543,5 +584,12 @@
     <!--<script src="../static/js/app.js"></script>-->
     <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script type="text/javascript" src="static/js/app1.js"></script>
+<!-- <script type="text/javascript">
+   
+   
+</script> -->
+
+
 </body>
 </html>
