@@ -126,25 +126,14 @@ function makeResponsive(GlobalYear, Globalval1) {
     yLinearScale,
     chosenYAxis
   ) {
-    console.log(chosenXAxis);
+    //console.log(chosenXAxis);
     circlesGroup
       .transition()
       .duration(1000)
       .attr("cx", d => {
-        console.log(d[chosenXAxis]);
-        console.log(xLinearScale(d[chosenXAxis]));
         return xLinearScale(d[chosenXAxis]);
       })
       .attr("cy", d => yLinearScale(d[chosenYAxis]))
-      // .attr("fill", (d, i) => {
-      //   // console.log(d[chosenYAxis]);
-      //   if (yLinearScale(d[chosenYAxis]) === height) {
-      //     console.log("none");
-      //     return "none";
-      //   } else {
-      //     return d3.schemeCategory10[i % 10];
-      //   }
-      // })
       .attr("opacity", (d, i) => {
         // console.log(d[chosenYAxis]);
         if (yLinearScale(d[chosenYAxis]) === height) {
@@ -166,7 +155,7 @@ function makeResponsive(GlobalYear, Globalval1) {
     yLinearScale,
     chosenYAxis
   ) {
-    console.log(data);
+    //console.log(data);
     textGroup
       .transition()
       .duration(1000)
@@ -179,14 +168,14 @@ function makeResponsive(GlobalYear, Globalval1) {
   }
 
   function update_continent(continent) {
-    console.log(continent);
+    //console.log(continent);
     var sect = document.getElementById("year");
     var year = sect.options[sect.selectedIndex].value;
     plot(year, continent);
   }
 
   function update_year(year) {
-    console.log(year);
+    //console.log(year);
     var sect = document.getElementById("continent");
     var continent = sect.options[sect.selectedIndex].value;
     plot(year, continent);
@@ -331,7 +320,7 @@ function makeResponsive(GlobalYear, Globalval1) {
       //.attr("value", d => d.Totallife)
       //.text(d => d.Totallife);
 
-      console.log(countrydata);
+      //console.log(countrydata);
       // parse data
       countrydata.forEach(function(data) {
         data.TotalLife2000 = +data.TotalLife2000;
@@ -362,6 +351,16 @@ function makeResponsive(GlobalYear, Globalval1) {
         data.W2000Urban = +data.W2000Urban;
         data.W2000Total = +data.W2000Total;
       });
+      for(var v in countrydata[0]){
+        countrydata.sort(function(c1, c2){
+          if (c1[v] < c2[v]){
+            return 1;
+          }
+          else{
+            return -1;
+          }
+        })
+      }
       ShowHide();
       // Create x scale function
       var xLinearScale = xScale(countrydata, chosenXAxis);
@@ -391,7 +390,10 @@ function makeResponsive(GlobalYear, Globalval1) {
         .scaleOrdinal()
         .domain(countrydata)
         .range(d3.schemeCategory10);
-      console.log(chosenXAxis);
+        
+        var colorRange = d3.scaleLinear()
+        .domain([0, d3.max(countrydata, function(d){return d[chosenYAxis];})])
+        .range(['lightBlue', 'Blue']); 
 
       var circlesGroup = chartGroup
         .selectAll("circle")
@@ -400,18 +402,10 @@ function makeResponsive(GlobalYear, Globalval1) {
         .append("circle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
-        .attr("r", 14)
-        //.attr("class", "countryCircle")
-        .attr("fill", (d, i) => d3.schemeCategory10[i % 10]);
-      //.attr("fill", (d, i) => {
-      //   console.log(d);
-      //   console.log(chosenYAxis);
-      //   if (d[chosenYAxis] === 0) return "none";
-      //   return d3.schemeCategory10[i % 10];
-      // }
-      // });
-
-      // .attr("fill", (d, i) => d3.interpolateRdYlGn[i % 10]);
+        .attr("r", 10)
+        .attr("fill", function (d, i) {
+          return colorRange(i);
+        });
 
       // append texts inside circles
       var textGroup = chartGroup
@@ -491,8 +485,7 @@ function makeResponsive(GlobalYear, Globalval1) {
         .attr("value", Globalval1 + GlobalYear + "Total") // value to grab for event listener
         .classed("inactive", true)
         .text("Total (%)");
-      console.log(Globalval1);
-      console.log(GlobalYear);
+
       // updateToolTip for the current circles
       var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
@@ -503,15 +496,27 @@ function makeResponsive(GlobalYear, Globalval1) {
         if (value !== chosenXAxis) {
           // replaces chosenXAxis with value
           chosenXAxis = value;
+          //console.log('Chosen X Axis :'+chosenXAxis);
+          //Re-drawing circle for color change ---START
+          var sequentialScale = d3.scaleSequential()
+          .domain([0, d3.max(countrydata, function(d){return d[chosenXAxis];})])
+          .interpolator(d3.interpolatePuBuGn);
 
-          // console.log(chosenXAxis)
+          var colorRange = d3.scaleLinear()
+          .domain([0, d3.max(countrydata, function(d){return d[chosenXAxis];})])
+          .range(['lightBlue', 'Blue']);
 
-          // updates x scale for new data
-          console.log(countrydata);
-          console.log(chosenXAxis);
-          console.log(chosenYAxis);
-          console.log(countrydata.map(d => d[chosenXAxis]));
-          console.log(countrydata.map(d => d[chosenYAxis]));
+          circlesGroup = chartGroup
+          .selectAll("circle")
+            .style('fill', function (d, i) {
+              return colorRange(i);
+            })
+            .attr('opacity', ".50")
+            .attr("stroke-opacity", "0.2")
+            .style("stroke", "white")
+            .style("stroke-width", "1px");
+            //Re-drawing circle for color change ---END
+
           xLinearScale = xScale(countrydata, chosenXAxis);
           // yLinearScale = yScale(countrydata, chosenYAxis);
 
@@ -563,9 +568,25 @@ function makeResponsive(GlobalYear, Globalval1) {
         if (value !== chosenYAxis) {
           // replaces chosenYAxis with value
           chosenYAxis = value;
-          console.log(chosenYAxis);
+          //console.log('Chosen Y Axis :'+ chosenYAxis);
 
-          // console.log(chosenYAxis)
+           //Re-drawing circle for color change ---START
+           var sequentialScale = d3.scaleSequential()
+           .domain([0, d3.max(countrydata, function(d){return d[chosenYAxis];})])
+           .interpolator(d3.interpolatePuBuGn);
+ 
+           var colorRange = d3.scaleLinear()
+           .domain([0, d3.max(countrydata, function(d){return d[chosenYAxis];})])
+           .range(['lightBlue', 'Blue']);
+ 
+           circlesGroup = chartGroup
+           .selectAll("circle")
+           .style('fill', function(d, i){return colorRange(i);})
+           .attr('opacity', ".50")
+           .attr("stroke-opacity", "0.2")
+           .style("stroke", "white")
+           .style("stroke-width", "1px");
+           // //Re-drawing circle for color change ---END
 
           // updates y scale for new data
           // xLinearScale = xScale(countrydata, chosenXAxis);
