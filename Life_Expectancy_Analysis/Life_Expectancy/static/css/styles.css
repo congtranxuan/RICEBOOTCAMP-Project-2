@@ -1856,7 +1856,7 @@ a:hover.back-to-top {
 
 	/* Header */
 	.header {
-		background: url('../images/header-background.jpg') center center no-repeat;
+		background: url('../images/header-background1.jpg') center center no-repeat;
 		background-size: cover; 
 	}
 
@@ -2186,7 +2186,7 @@ a:hover.back-to-top {
  .choice {
 	font-weight: 500;
 	font-size: 18px;
-	color: red;
+	color: #00bfd8;
 	text-align: left;
 } 
 
@@ -2270,3 +2270,5 @@ select {
   .select-items div:hover, .same-as-selected {
 	background-color: rgba(0, 0, 0, 0.1);
   }
+
+  
