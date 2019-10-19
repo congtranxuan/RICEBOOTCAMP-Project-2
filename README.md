@@ -123,4 +123,4 @@ This project is licensed under the Rice License - see the [LICENSE.md](LICENSE.m
 ## Acknowledgments
 
 
-
+![map]("Life Expectancy final graphs and images/Lifeexpetcancymap.png")
