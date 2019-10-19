@@ -29,6 +29,7 @@ Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 Metadata = Base.classes.LifeExpectancy
+Mapdata = Base.classes.LifeExpectancyForMap
 
 
 @app.route("/")
@@ -108,6 +109,23 @@ def dataquery():
             newdata.update({keys[j] : data[keys[j]][i]})
         jsondata.append(newdata)
       
+    return jsonify(jsondata)
+
+@app.route("/map")
+def mapquery():
+    
+    stmt = db.session.query(Mapdata).statement
+    data = pd.read_sql_query(stmt, db.session.bind)
+        
+    # Format the data to send as json
+    keys = ["Country","Bothsexes16"]
+    
+    jsondata =[]
+    for i in range(len(data["Country"])):
+        newdata={}
+        for j in range(len(keys)):
+            newdata.update({keys[j] : data[keys[j]][i]})
+        jsondata.append(newdata)
     return jsonify(jsondata)
 
 @app.route("/country")

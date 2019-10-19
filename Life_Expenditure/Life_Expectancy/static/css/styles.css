@@ -2271,4 +2271,19 @@ select {
 	background-color: rgba(0, 0, 0, 0.1);
   }
 
-  
+  .mapbox {
+	/* margin-top: 100px;
+	  margin-bottom: 100px; */
+	height: 100%;
+  	width: 80%;
+  	margin: auto;
+  	border: 1px solid black;
+	/* width: 90%;
+	height: 10rem;
+	min-width: 25rem;
+	min-height: 15rem; */
+  }
+
+  .maptitle{
+	  text-align: center;
+  }

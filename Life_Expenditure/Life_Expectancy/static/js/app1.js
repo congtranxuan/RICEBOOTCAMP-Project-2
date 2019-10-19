@@ -320,9 +320,8 @@ function makeResponsive(GlobalYear, Globalval1) {
   // Retrieve data from the CSV file and execute everything below
 
   //d3.csv("assets/data/" + GlobalYear + ".csv")
-  d3.csv("static/db/data.csv")
-    .then(function(countrydata, err) {
-      if (err) throw err;
+  d3.csv("static/db/data.csv", function(countrydata) {
+
 
       //d3.select("#mydropdown")
       //.data(countrydata)
@@ -611,10 +610,8 @@ function makeResponsive(GlobalYear, Globalval1) {
           }
         }
       });
-    })
-    .catch(function(error) {
-      console.log(error);
     });
+    
 }
 // When the browser loads, makeResponsive() is called.
 //var yr = document.getElementById("years");
