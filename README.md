@@ -84,7 +84,7 @@ Last but not least, download "https://github.com/congtranxuan/RICEBOOTCAMP-Proje
 * [HTML] (https://onepagelove.com/evolo) - used to create the web template
 * [Heroku] (https://www.heroku.com) - used to deploy to online server
 
-![](Images/water.jpg)
+![](Images/water.png)
 
 ## Contributing
 
