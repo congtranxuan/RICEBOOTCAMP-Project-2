@@ -1,7 +1,7 @@
 function plotbar(from_year,to_year,choice) {
     
-  d3.json("/data").then(function(response, err) {
-    if (err) throw err;
+  d3.json("/data",function(response) {
+    
     console.log(choice.length);
     console.log(response);
     var year = parseInt(from_year);
@@ -198,9 +198,8 @@ function plotbar(from_year,to_year,choice) {
 
 function plotscatter(year,choice) {
     
-    d3.json("/data").then(function(response, err) {
-      if (err) throw err;
-
+    d3.json("/data",function(response) {
+      
         let data = response;
         //const arrayColumn = (arr, n) => arr.map(x => x[n]);
         let year_capita = year.concat("capita");
@@ -329,7 +328,7 @@ function plotscatter(year,choice) {
         var selector = d3.select("#selData");
 
         // Use the list of sample names to populate the select options
-        d3.json("/country").then((sampleNames) => {
+        d3.json("/country", function(sampleNames) {
           console.log(sampleNames);
           sampleNames.forEach((sample) => {
             selector
