@@ -38,48 +38,6 @@ def index():
     return render_template("index.html")
 
 
-# @app.route("/names")
-# def names():
-#     """Return a list of sample names."""
-
-#     # Use Pandas to perform the sql query
-#     stmt = db.session.query(Metadata).statement
-#     df = pd.read_sql_query(stmt, db.session.bind)
-
-#     # Return a list of the column names (sample names)
-#     return jsonify(list(df.columns)[2:])
-
-
-# @app.route("/<year>")
-# def sample_metadata(sample):
-#     """Return the MetaData for a given sample."""
-#     sel = [
-#         Metadata.sample,
-#         Metadata.ETHNICITY,
-#         Metadata.GENDER,
-#         Metadata.AGE,
-#         Metadata.LOCATION,
-#         Metadata.BBTYPE,
-#         Metadata.WFREQ,
-#     ]
-
-#     results = db.session.query(*sel).filter(Metadata.sample == sample).all()
-
-#     # Create a dictionary entry for each row of metadata information
-#     sample_metadata = {}
-#     for result in results:
-#         sample_metadata["sample"] = result[0]
-#         sample_metadata["ETHNICITY"] = result[1]
-#         sample_metadata["GENDER"] = result[2]
-#         sample_metadata["AGE"] = result[3]
-#         sample_metadata["LOCATION"] = result[4]
-#         sample_metadata["BBTYPE"] = result[5]
-#         sample_metadata["WFREQ"] = result[6]
-
-#     print(sample_metadata)
-#     return jsonify(sample_metadata)
-
-
 @app.route("/data")
 def dataquery():
     

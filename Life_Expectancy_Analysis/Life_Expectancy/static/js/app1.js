@@ -310,11 +310,7 @@ function makeResponsive(GlobalYear, Globalval1) {
 
   //d3.csv("assets/data/" + GlobalYear + ".csv")
   d3.csv("static/db/data.csv", function(countrydata) {
-<<<<<<< HEAD:Life_Expenditure/Life_Expectancy/static/js/app1.js
-
-=======
      
->>>>>>> 81eed39b42253ef200ba40a07646856ee7ac7315:Life_Expectancy_Analysis/Life_Expectancy/static/js/app1.js
 
       //d3.select("#mydropdown")
       //.data(countrydata)

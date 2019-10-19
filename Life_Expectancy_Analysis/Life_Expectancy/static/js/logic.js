@@ -26,9 +26,9 @@ function legend() {
     
       // Define the properties of legend
         legends.onAdd = function () {
-        var labels = ["Magnitude Color Legend"]; 
+        var labels = ["Life Expectancy Legend"]; 
         var div = L.DomUtil.create('div', 'legend');
-        cat = ["No Data",'< 50','<55','<60','<65','<70',"<75","<80"];
+        cat = ["No Data",'>50','>55','>60','>65','>70',">75",">80"];
         color = ["#10ff00", "#60ff00", "#afff00", "#ffff00","#ffaf00" ,"#ff6000", "#ff1000","#000000"];
     
         for (var i = 0; i < cat.length; i++) {
@@ -44,10 +44,15 @@ function legend() {
       }
 
 // // Create a map object
+// var myMap = L.map("leafletmap", { center: [42.258044, 22.709860],
+//     minZoom: 1,
+// 	maxZoom: 3
+// });
 var myMap = L.map("leafletmap", {
     center: [42.258044, 22.709860],
     zoom: 2
 });
+
 
 
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
