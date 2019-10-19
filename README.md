@@ -5,6 +5,8 @@
 
 With life expectancy as an overall focus, we focus on trends and factors that have impact on a person's life from healthcare and environmental point of view. We use data from World Health Organization and World Bank to analyze life expectency on a global scale. Our initial thoughts for this analysis were that healthcare expenditures would have the greatest impact on life expectency however, after the analysis, we can conclude that sanitation holds a higher impact, followed by safe water. 
 
+![](Images/map.jpg)
+
 ## Data Source:
 
 1.  World Health Organization 
@@ -50,57 +52,39 @@ Platforms used:
 
 ### Installing
 
-You can install your libraries using  pip:
-* pip install sklearn-pandas
-	
-or using conda:
-* conda install plotly
-
-Now, plotly-orca is little bit different. You will need to:
-* conda install -c plotly plotly-orca
-
-
-
+* install python libraries
+* install anaconda v.3.7
+* install javascript libraries (D3, jQuery)
+* install plotly and leaflet libraries
+* install Flask
+* install SQLAlchemy
 
 
 ## Running the tests
 
 1. Use Visual Studio Code to load the project folders.
 2. Open file index.html and app.py in VS Code.
-3. Run the code in VSC using app.py (shortcut key function F5) - which will take you to - http://127.0.0.1:5000/ to view the one page template.
-4. Open any of the other files in javascript to view each graph's code.
-
-
-
-
-
+3. Run the code in VSC using app.py (shortcut key function F5) - which will take you to - http://127.0.0.1:5000/ to view the graph on html template.
+![](Images/barchart.jpg)
 Last but not least, download "https://github.com/congtranxuan/RICEBOOTCAMP-Project-2.git" to a local directory.
 1. Life_Expectancy_Analysis folder contains:
-   - data folder
    - static folder contains [css, db(contains clean data files), images, js, php, webfonts, privacy policy, terms conditions]
    - templates contains (index.html)
 
-* Images directory - All charts (png-type files) will be stored in this directory
-* Output directory - All data files (CSV files) will be stored in this directory
 
+![](Images/healthcare.jpg)
 
 ## Built With
 
 * [Pandas](https://pandas.pydata.org/) - Used to clean and analyze data 
 * [Numpy](https://numpy.org/) - Used to run calsulations (data analysis)
-* [Matplotlib](https://matplotlib.org/) - Used to generate graphical plots
-* [GeoPandas](http://geopandas.org/) - Used to analyze migrations data and create maps
 * [Plotly] (https://plot.ly/) - Used to create complex visualizations
-* [PlotlyOrca](https://github.com/plotly/orca) - Used to generate images(png)
+* [Leaflet] (https://leafletjs.com) - Used to create map visualizations
+* [D3] (https://d3js.org) - Used for creating a chart
+* [HTML] (https://onepagelove.com/evolo) - used to create the web template
+* [Heroku] (https://www.heroku.com) - used to deploy to online server
 
-
-
-
-
-
-
-
-
+![](Images/watersanitation.jpg)
 
 ## Contributing
 
@@ -123,4 +107,4 @@ This project is licensed under the Rice License - see the [LICENSE.md](LICENSE.m
 ## Acknowledgments
 
 
-![map]("Life_Expectancy_final_graphs_and_images/Lifeexpetcancymap.png")
+
