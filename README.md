@@ -5,6 +5,9 @@
 
 With life expectancy as an overall focus, we focus on trends and factors that have impact on a person's life from healthcare and environmental point of view. We use data from World Health Organization and World Bank to analyze life expectency on a global scale. Our initial thoughts for this analysis were that healthcare expenditures would have the greatest impact on life expectency however, after the analysis, we can conclude that sanitation holds a higher impact, followed by safe water. 
 
+Our project can be found in the link below:
+https://life-expectancy-analysis.herokuapp.com
+
 ![](Images/map.png)
 
 ## Data Source:
